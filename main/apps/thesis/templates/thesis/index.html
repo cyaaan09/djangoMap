@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Butuan City</title>
+	<style type="text/css">
+		html, body{
+			height: 100%;
+		}
+		#map{
+			height: 90%;;
+			width: 100%;
+		}
+		#legend{
+			height: 10%;
+			
+		}
+		#legend h1{
+			
+		}
+		
+		#contentSize{
+			height: 100px;
+			width: 300px;
+			font-size: 20px;
+			font-weight: bold;
+			text-align: center;
+			padding-top: 30px;
+		}
+	</style>
+	<script type="text/javascript" src="/static/thesis/javascript/barangay.js"></script>
+	<script type="text/javascript" src="/static/thesis/javascript/blocks.js"></script>
+
+</head>
+<body>
+<div id="legend">
+	<h1>LEGEND</h1>
+	<div id="blockcolor">
+		<h1>colors</h1>
+	
+
+	</div>
+	
+</div>
+<div id="map"></div>
+<script type="text/javascript">
+	function initMap(){
+		var options = {
+			zoom:17,
+			center:{lat:8.9457, lng:125.5418}
+		}
+
+		var map = new google.maps.Map(document.getElementById('map'), options);
+
+		// var marker = new google.maps.Marker({
+		// 	position:{lat:8.9498, lng:125.5424},
+		// 	map:map
+		// });
+
+		// var infoWindow = new google.maps.InfoWindow({
+		// 	content: '<h1>Humabon Butuan City</h1>'
+		// });
+
+		// marker.addListener('click', function(){
+		// 	infoWindow.open(map, marker);
+		// })
+
+
+		// addMarker({lat:8.9498, lng:125.5424})
+		// addMarker({lat:8.9488, lng:125.5422})
+		// addMarker({lat:8.9480, lng:125.5442})
+		// addMarker({lat:8.9451, lng:125.5442})
+		// addMarker({lat:8.9440, lng:125.5442})
+		// addMarker({lat:8.9457, lng:125.5418})
+		// addMarker({lat:8.9468, lng:125.5394})
+		// addMarker({lat:8.9461, lng:125.5353})
+		// addMarker({lat:8.9440, lng:125.5364})
+		// addMarker({lat:8.9468, lng:125.5449})
+		// addMarker({lat:8.948916, lng:125.540782})
+
+		makePolygon(Humabon,Humabon)
+		makePolygon(Sikatuna,Sikatuna)
+		makePolygon(Urduja)
+		makePolygon(Silongan)
+		makePolygon(RajahSoliman)
+		makePolygon(Agao)
+		makePolygon(DiegoSilang)
+		makePolygon(NewSocietyVillage)
+		makePolygon(LapuLapu)
+		makePolygon(Dagohoy)
+		
+	
+		makeBlock(block1,position1,1)
+		makeBlock(block2,position2,2)
+		makeBlock(block3,position3,3)
+		makeBlock(block4,position4,4)
+		makeBlock(block5,position5,5)
+		makeBlock(block6,position6,6)
+		makeBlock(block7,position7,7)
+		makeBlock(block8,position8,8)
+		makeBlock(block9,position9,9)
+		makeBlock(block10,position10,10)
+		makeBlock(block11,position11,11)
+		makeBlock(block12,position12,12)
+		makeBlock(block13,position13,13)
+		makeBlock(block14,position14,14)
+		makeBlock(block15,position15,15)
+		makeBlock(block16,position16,16)
+		
+		
+
+		//add marker function
+		function addMarker(coordinates){
+			var marker = new google.maps.Marker({
+			position:coordinates,
+			map:map
+			})
+			// 	var infoWindow = new google.maps.InfoWindow({
+			// 	content: '<h1>Humabon Butuan City</h1>'
+			// });
+
+			// 	marker.addListener('click', function(){
+			// 	infoWindow.open(map, marker);
+			// })
+
+		}
+
+		//make a polygon function
+		function makePolygon(paths,name) {
+			var polygon = new google.maps.Polygon({
+				paths: paths,
+				strokeColor:'red',
+				strokeOpacity: 0.1,
+				strokeWeight: 3,
+				fillColor: 'red',
+				fillOpacity: 0.1
+			});
+			polygon.setMap(map);
+
+			
+		}
+
+		function makeBlock(paths, position, blocknumber, ){
+			var block = new google.maps.Polygon({
+				paths:paths,
+				strokeColor:'violet',
+				strokeOpacity:0.5,
+				fillColor:'violet',
+				fillOpacity:0.1
+			});
+			block.setMap(map);
+			
+			var infowindow = new google.maps.InfoWindow();
+			
+			google.maps.event.addListener(block,'click', function() {
+			
+				
+				var contentString = '<div id = "contentSize">this is block'+ blocknumber +  '</div>';
+					infowindow.setContent(contentString);
+					infowindow.setPosition(position[0]);
+					
+			
+				infowindow.open(map);
+			}); 
+		}
+	}
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBY3GZ2fHavousWljcj6X6JboicJFSPnds&callback=initMap"
+    async defer></script>
+</body>
+</html>
